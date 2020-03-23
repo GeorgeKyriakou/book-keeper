@@ -2,8 +2,7 @@ package com.kyriakou.graphql.service;
 
 import com.kyriakou.graphql.model.Book;
 import com.kyriakou.graphql.repository.BookRepository;
-import com.kyriakou.graphql.service.datafetcher.AllBooksDataFetcher;
-import com.kyriakou.graphql.service.datafetcher.BookDataFetcher;
+import com.kyriakou.graphql.service.datafetcher.*;
 import graphql.GraphQL;
 import graphql.schema.GraphQLSchema;
 import graphql.schema.idl.RuntimeWiring;
@@ -29,24 +28,30 @@ public class GraphQLService {
 
     private AllBooksDataFetcher allBooksDataFetcher;
     private BookDataFetcher bookDataFetcher;
+    private BookCreator bookCreateDataFetcher;
+    private BookDelete bookDeleteDataFetcher;
+    private BookEdit bookEditDataFetcher;
 
     @Autowired
     BookRepository bookRepository;
 
     @Autowired
-    public GraphQLService(AllBooksDataFetcher allBooksDataFetcher, BookDataFetcher bookDataFetcher) {
+    public GraphQLService(AllBooksDataFetcher allBooksDataFetcher, BookDataFetcher bookDataFetcher, BookCreator bookCreator, BookDelete bookDelete,BookEdit bookEdit) {
         this.allBooksDataFetcher = allBooksDataFetcher;
         this.bookDataFetcher = bookDataFetcher;
+        this.bookCreateDataFetcher = bookCreator;
+        this.bookDeleteDataFetcher = bookDelete;
+        this.bookEditDataFetcher = bookEdit;
     }
 
     @PostConstruct
     public void loadSchema() throws IOException {
-       loadDataIntoHSQL();
+        loadDataIntoHSQL();
 
         File schemaFile = resource.getFile();
         TypeDefinitionRegistry typeRegistry = new SchemaParser().parse(schemaFile);
         RuntimeWiring wiring = buildRuntimeWiring();
-        GraphQLSchema schema = new SchemaGenerator().makeExecutableSchema(typeRegistry,wiring);
+        GraphQLSchema schema = new SchemaGenerator().makeExecutableSchema(typeRegistry, wiring);
         graphQL = GraphQL.newGraphQL(schema).build();
     }
 
@@ -79,18 +84,24 @@ public class GraphQLService {
                         },
                         "2012"
                 )
-        ).forEach(book-> bookRepository.save(book));
+        ).forEach(book -> bookRepository.save(book));
     }
 
     private RuntimeWiring buildRuntimeWiring() {
         return RuntimeWiring.newRuntimeWiring()
-                .type("Query",typeWiring -> typeWiring
-                            .dataFetcher("allBooks", allBooksDataFetcher)
-                            .dataFetcher("book", bookDataFetcher))
-                        .build();
+                .type("Query", typeWiring -> typeWiring
+                        .dataFetcher("allBooks", allBooksDataFetcher)
+                        .dataFetcher("book", bookDataFetcher))
+                .type("Mutation", typeWiring -> typeWiring
+                        .dataFetcher("createBook", bookCreateDataFetcher)
+                        .dataFetcher("deleteBook", bookDeleteDataFetcher)
+                        .dataFetcher("updateBook", bookEditDataFetcher)
+                )
+                .build();
+
     }
 
-    public GraphQL getGraphQL(){
+    public GraphQL getGraphQL() {
         return graphQL;
     }
 }

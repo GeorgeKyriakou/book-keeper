@@ -1,29 +1,27 @@
 package com.kyriakou.graphql.service.datafetcher;
 
-import com.kyriakou.graphql.model.Book;
 import com.kyriakou.graphql.repository.BookRepository;
 import graphql.schema.DataFetcher;
 import graphql.schema.DataFetchingEnvironment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.Optional;
-
-
 @Component
-public class BookDataFetcher implements DataFetcher<Book> {
+public class BookDelete implements DataFetcher<Boolean> {
     BookRepository bookRepository;
 
     @Autowired //constructor injector
-    public BookDataFetcher(BookRepository bookRepository) {
+    public BookDelete(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }
 
     @Override
-    public Book get(DataFetchingEnvironment dataFetchingEnvironment){
+    public Boolean get(DataFetchingEnvironment dataFetchingEnvironment) {
         String isn = dataFetchingEnvironment.getArgument("isn");
-        Optional<Book> book = bookRepository.findByIsn(isn);
-        return book.orElse(null);
+        if(bookRepository.existsById(isn)){
+            bookRepository.deleteById(isn);
+            return true;
+        }
+        return false;
     }
-
 }

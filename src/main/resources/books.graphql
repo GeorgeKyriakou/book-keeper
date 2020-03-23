@@ -1,10 +1,32 @@
 schema {
-    query: Query
+    query: Query,
+    mutation: Mutation
 }
 
 type Query {
     allBooks: [Book]
-    book(id:String): Book
+    book(isn:String): Book
+}
+
+
+type Mutation {
+    createBook(
+        isn: String!,
+        title: String!,
+        publisher: String!,
+        authors: [String]!,
+        publishDate: String!
+    ): Book
+    updateBook(
+        isn: String!,
+        title: String!,
+        publisher: String!,
+        authors: [String]!,
+        publishDate: String!
+    ): Book
+    deleteBook(
+        isn: String
+    ): Boolean
 }
 
 type Book {
