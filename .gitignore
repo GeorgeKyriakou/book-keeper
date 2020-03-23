@@ -1,9 +1,9 @@
 HELP.md
 target/
-.mvn/wrapper/maven-wrapper.jar
+.mvn
 !**/src/**
 !pom.xml
-
+!client
 ### STS ###
 .apt_generated
 .classpath
