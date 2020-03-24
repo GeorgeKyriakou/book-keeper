@@ -2,6 +2,8 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 
 import "./App.css";
+import { LibraryWrapper } from "./containers/LibraryWrapper";
+import { BookComponent } from "./components/BookComponent";
 
 function App() {
 
@@ -30,7 +32,12 @@ function App() {
                   <Route
                     exact
                     path="/books"
-                    render={() => <div>Books go here</div>}
+                    component={LibraryWrapper}
+                  ></Route>
+                    <Route
+                    exact
+                    path="/book/details/:isn"
+                    component={BookComponent}
                   ></Route>
                 </Switch>
               </div>
