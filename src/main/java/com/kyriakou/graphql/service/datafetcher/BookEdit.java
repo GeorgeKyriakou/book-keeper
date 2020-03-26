@@ -23,6 +23,7 @@ public class BookEdit implements DataFetcher<Book> {
         String isn = dataFetchingEnvironment.getArgument("isn");
         String title = dataFetchingEnvironment.getArgument("title");
         String publisher = dataFetchingEnvironment.getArgument("publisher");
+        String imageUrl = dataFetchingEnvironment.getArgument("imageUrl");
         String publishDate = dataFetchingEnvironment.getArgument("publishDate");
         List<String> list = dataFetchingEnvironment.getArgument("authors");
         String[] authors = list.toArray(new String[0]);
@@ -33,7 +34,8 @@ public class BookEdit implements DataFetcher<Book> {
                     title,
                     publisher,
                     authors,
-                    publishDate
+                    publishDate,
+                    imageUrl
             );
             bookRepository.save(updatedBook);
             return updatedBook;

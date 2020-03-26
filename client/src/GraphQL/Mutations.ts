@@ -48,8 +48,8 @@ export const UPDATE_BOOK = gql`
   }
 `;
 
-export const DELETE_BOOK_BY_ID = gql`
-  mutation deleteBook($isn: String!) {
-    deleteBook(isn: $isn)
-  }
+export const deleteBook = (isn: string) => gql`
+ mutation {
+  deleteBook(isn: "${isn}")
+ }
 `;

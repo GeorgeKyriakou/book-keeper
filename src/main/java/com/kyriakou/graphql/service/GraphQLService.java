@@ -59,30 +59,34 @@ public class GraphQLService {
         Stream.of(
                 new Book(
                         "123",
-                        "Cloud Computing: Concepts",
-                        "Prentice Hall",
+                        "5 Ingredients: Quick and easy food",
+                        "Flatiron Books",
                         new String[]{
-                                "Zaigham Mahmood", "Thomas Erl", "Richardo Puttini"
+                                "Jamie Oliver"
                         },
-                        "2013"
+                        "January 8, 2019",
+                        "https://images-na.ssl-images-amazon.com/images/I/81fK1lepPdL.jpg"
                 ),
                 new Book(
                         "124",
-                        "Cloud Engineering & Architecture",
-                        "Orielly",
+                        "Becoming",
+                        "Penguin",
                         new String[]{
-                                "Barak Obama"
+                                "Michelle Obama"
                         },
-                        "2018"
+                        "November 13, 2018",
+                        "https://images-na.ssl-images-amazon.com/images/I/41w%2Bk8pPngL.jpg"
+
                 ),
                 new Book(
                         "125",
-                        "Cooking with Brad",
-                        "Penguin",
+                        "Before We Were Yours: A Novel",
+                        "Ballantine Books",
                         new String[]{
-                                "Brad Smith"
+                                "Lisa Wingate"
                         },
-                        "2012"
+                        "June 6, 2017",
+                        "https://images-na.ssl-images-amazon.com/images/I/513yA7tojNL.jpg"
                 )
         ).forEach(book -> bookRepository.save(book));
     }

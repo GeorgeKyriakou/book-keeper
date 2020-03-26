@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 
-import "./App.css";
 import { LibraryWrapper } from "./containers/LibraryWrapper";
 import { BookComponent } from "./components/BookComponent";
 

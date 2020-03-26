@@ -1,7 +1,8 @@
 import React from "react";
-import "./Books.css";
+import "./Books.scss";
 import { Book } from "../models/BookModel";
 import { useHistory } from "react-router-dom";
+import {BookPreview} from './BookPreview'
 
 interface Props {
   books: Book[];
@@ -17,12 +18,12 @@ export const BooksList: React.FC<Props> = ({ books }) => {
       <div>
         {React.Children.toArray(
           books.map(book => (
-            <h1
+            <div
               className="book-list-item"
               onClick={() => onTitleClick(book.isn)}
             >
-              {book.title}
-            </h1>
+                <BookPreview book={book}></BookPreview>
+            </div>
           ))
         )}
       </div>
