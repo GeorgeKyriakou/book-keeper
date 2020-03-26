@@ -16,6 +16,7 @@ type Mutation {
         publisher: String!,
         authors: [String]!,
         publishDate: String!
+        description: String!
     ): Book
     updateBook(
         isn: String!,
@@ -24,9 +25,10 @@ type Mutation {
         authors: [String]!,
         publishDate: String!
         imageUrl: String
+        description: String
     ): Book
     deleteBook(
-        isn: String
+        isn: String!
     ): Boolean
 }
 
@@ -36,5 +38,6 @@ type Book {
     publisher: String
     authors: [String]
     publishDate: String
-    imageUrl:String
+    imageUrl: String
+    description: String
 }

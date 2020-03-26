@@ -29,5 +29,8 @@ public class Book {
     private String[] authors;
     @Column
     private String publishDate;
-
+    @Column
+    private String imageUrl;
+    @Column
+    private String description;
 }

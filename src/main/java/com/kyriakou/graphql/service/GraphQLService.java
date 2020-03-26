@@ -65,7 +65,8 @@ public class GraphQLService {
                                 "Jamie Oliver"
                         },
                         "January 8, 2019",
-                        "https://images-na.ssl-images-amazon.com/images/I/81fK1lepPdL.jpg"
+                        "https://images-na.ssl-images-amazon.com/images/I/81fK1lepPdL.jpg",
+                        "Suspendisse eget pharetra dolor. Morbi ut mauris erat. Maecenas maximus congue neque, nec rhoncus mi luctus nec. Nullam ullamcorper nisi neque."
                 ),
                 new Book(
                         "124",
@@ -75,7 +76,8 @@ public class GraphQLService {
                                 "Michelle Obama"
                         },
                         "November 13, 2018",
-                        "https://images-na.ssl-images-amazon.com/images/I/41w%2Bk8pPngL.jpg"
+                        "https://images-na.ssl-images-amazon.com/images/I/41w%2Bk8pPngL.jpg",
+                        "Nullam laoreet mauris sed neque fringilla semper. In molestie posuere enim id commodo. "
 
                 ),
                 new Book(
@@ -86,7 +88,8 @@ public class GraphQLService {
                                 "Lisa Wingate"
                         },
                         "June 6, 2017",
-                        "https://images-na.ssl-images-amazon.com/images/I/513yA7tojNL.jpg"
+                        "https://images-na.ssl-images-amazon.com/images/I/513yA7tojNL.jpg",
+                        "In molestie posuere enim id commodo. Etiam a ex porta, sodales leo et, sodales est. Nulla facilisi!"
                 )
         ).forEach(book -> bookRepository.save(book));
     }
