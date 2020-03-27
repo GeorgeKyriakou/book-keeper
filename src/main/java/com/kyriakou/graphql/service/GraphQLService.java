@@ -85,7 +85,7 @@ public class GraphQLService {
                         "Before We Were Yours: A Novel",
                         "Ballantine Books",
                         new String[]{
-                                "Lisa Wingate"
+                                "Lisa Wingate, Wingate Lisa"
                         },
                         "June 6, 2017",
                         "https://images-na.ssl-images-amazon.com/images/I/513yA7tojNL.jpg",
