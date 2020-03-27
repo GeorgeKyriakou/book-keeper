@@ -1,6 +1,6 @@
 import React from "react";
 import "./Books.scss";
-import { Book } from "../models/BookModel";
+import { Book } from "../../models/BookModel";
 import { useHistory } from "react-router-dom";
 import {BookPreview} from './BookPreview'
 
